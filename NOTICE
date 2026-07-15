@@ -1,0 +1,20 @@
+Lumi Jelly PNGTuber character repository
+Copyright 2026 Sunwood AI Labs
+
+Lumi Jelly artwork was created with OpenAI's built-in Image Gen tool on
+2026-07-15. The production runtime images preserve the generated artwork;
+local processing is limited to chroma-key removal, transparent padding, and
+resizing.
+
+This character package targets PuruPuru PNGTuber, originally developed by masa
+and published at:
+https://github.com/rotejin/PuruPuruPNGTuber
+
+PuruPuru PNGTuber is not bundled in this repository. Its software is available
+under Apache License 2.0, and its visual assets have separate terms defined by
+the upstream project.
+
+The verification screenshot includes the PuruPuru PNGTuber user interface.
+Rights and terms for that interface remain with masa and the upstream project;
+the screenshot is included as a non-commercial project-introduction and
+verification image under the upstream asset terms.
