@@ -13,14 +13,19 @@ if [[ -z "$TARGET" || ! -f "$TARGET/app.js" || ! -d "$TARGET/tests" ]]; then
   exit 2
 fi
 
-if [[ -e "$TARGET/assets/lumi-jelly" ]]; then
-  echo "Refusing to overwrite existing $TARGET/assets/lumi-jelly" >&2
-  exit 3
-fi
+for asset_dir in lumi-jelly lumi-jelly-head-motion; do
+  if [[ -e "$TARGET/assets/$asset_dir" ]]; then
+    echo "Refusing to overwrite existing $TARGET/assets/$asset_dir" >&2
+    exit 3
+  fi
+done
 
 for path in \
   "$TARGET/scripts/prepare_lumi_imagegen_assets.py" \
-  "$TARGET/scripts/render_lumi_jelly_assets.sh"; do
+  "$TARGET/scripts/render_lumi_jelly_assets.sh" \
+  "$TARGET/scripts/prepare_lumi_head_motion_assets.py" \
+  "$TARGET/scripts/render_lumi_head_motion_assets.sh" \
+  "$TARGET/scripts/build_lumi_head_motion_contact_sheet.py"; do
   if [[ -e "$path" ]]; then
     echo "Refusing to overwrite existing $path" >&2
     exit 3
@@ -41,9 +46,14 @@ cp "$ROOT"/provenance/source/*.png "$TARGET/assets/lumi-jelly/imagegen-v2/source
 cp "$ROOT"/provenance/keyed/*.png "$TARGET/assets/lumi-jelly/imagegen-v2/keyed/"
 cp "$ROOT/integration/scripts/prepare_lumi_imagegen_assets.py" "$TARGET/scripts/"
 cp "$ROOT/integration/scripts/render_lumi_jelly_assets.sh" "$TARGET/scripts/"
+cp -R "$ROOT/head-motion/avatar" "$TARGET/assets/lumi-jelly-head-motion"
+cp "$ROOT/integration/scripts/prepare_lumi_head_motion_assets.py" "$TARGET/scripts/"
+cp "$ROOT/integration/scripts/render_lumi_head_motion_assets.sh" "$TARGET/scripts/"
+cp "$ROOT/integration/scripts/build_lumi_head_motion_contact_sheet.py" "$TARGET/scripts/"
 chmod +x "$TARGET/scripts/render_lumi_jelly_assets.sh"
+chmod +x "$TARGET/scripts/render_lumi_head_motion_assets.sh"
 
 git -C "$TARGET" apply "$PATCH_FILE"
 
-echo "Installed Lumi Jelly into $TARGET"
+echo "Installed Lumi Jelly and Lumi Jelly Head Motion into $TARGET"
 echo "Run: python3 -m unittest discover -s tests -q"

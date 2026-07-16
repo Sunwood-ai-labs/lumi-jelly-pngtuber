@@ -1,0 +1,95 @@
+{
+  "app": "PuruPuru PNGTuber",
+  "type": "purupuru-pngtuber-settings",
+  "version": 2,
+  "savedAt": "2026-07-16T00:00:00.000Z",
+  "avatarImageSize": { "width": 1024, "height": 1024 },
+  "state": {
+    "angleStrength": 28,
+    "faceWarp": 0,
+    "angleXDeform": 0,
+    "faceTurnDepth": 0,
+    "faceTurnVertical": 0,
+    "angleYDeform": 0,
+    "hairVisible": false,
+    "hairWarp": 0,
+    "hairSpring": 0,
+    "hairBundleStrength": 0,
+    "frontHairShadowEnabled": false,
+    "frontHairShadowStrength": 0,
+    "frontHairShadowDistance": 0,
+    "followSpeed": 42,
+    "rangeLeft": 100,
+    "rangeRight": 100,
+    "rangeUp": 100,
+    "rangeDown": 100,
+    "avatarSize": 80,
+    "avatarX": 0,
+    "avatarY": 0,
+    "breathStrength": 36,
+    "rollStrength": 10,
+    "pyokoStrength": 12,
+    "highlightEnabled": false,
+    "subHighlightEnabled": false,
+    "tearLensEnabled": false,
+    "bgColor": "#FFF8F0",
+    "hairColor": "#68DDE8",
+    "hairTintLightness": 0,
+    "hairTintEnabled": false,
+    "autoBlink": true,
+    "mouseFollowEnabled": true,
+    "idleMotionEnabled": true,
+    "diagonalFaceWarpEnabled": false,
+    "wobbleSeed": 0.73,
+    "micGain": 210,
+    "mouthHalf": 8,
+    "mouthFull": 22,
+    "mouthRelease": 18,
+    "mouthCrossfadeMs": 70
+  },
+  "outputSettings": { "obsPreset": "standard" },
+  "faceCenterSetup": {
+    "version": 1,
+    "center": { "x": 520, "y": 568 }
+  },
+  "eyeSetup": {
+    "version": 2,
+    "centers": [
+      { "x": 434, "y": 504 },
+      { "x": 608, "y": 504 }
+    ],
+    "radius": { "x": 62, "y": 54 },
+    "rotationLeft": 0,
+    "rotationRight": 0
+  },
+  "faceDepthSetup": {
+    "version": 1,
+    "anchors": {
+      "leftEye": { "x": 434, "y": 504 },
+      "rightEye": { "x": 608, "y": 504 },
+      "nose": { "x": 520, "y": 556 },
+      "mouth": { "x": 520, "y": 604 },
+      "chin": { "x": 520, "y": 666 }
+    }
+  },
+  "neckPivotSetup": {
+    "version": 1,
+    "pivot": { "x": 520, "y": 650 }
+  },
+  "hairBundleSetup": {
+    "version": 1,
+    "bundles": {
+      "frontLeft": { "root": { "x": 408, "y": 128 }, "tip": { "x": 378, "y": 438 } },
+      "frontCenter": { "root": { "x": 512, "y": 108 }, "tip": { "x": 512, "y": 450 } },
+      "frontRight": { "root": { "x": 616, "y": 128 }, "tip": { "x": 646, "y": 438 } },
+      "sideLeft": { "root": { "x": 300, "y": 330 }, "tip": { "x": 230, "y": 820 } },
+      "sideRight": { "root": { "x": 724, "y": 330 }, "tip": { "x": 794, "y": 820 } },
+      "backLeft": { "root": { "x": 274, "y": 300 }, "tip": { "x": 188, "y": 900 } },
+      "backCenter": { "root": { "x": 512, "y": 110 }, "tip": { "x": 512, "y": 930 } },
+      "backRight": { "root": { "x": 750, "y": 300 }, "tip": { "x": 836, "y": 900 } }
+    }
+  },
+  "itemLayers": [],
+  "activeItemLayerId": null,
+  "packageVersion": 1
+}
