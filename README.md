@@ -1,135 +1,94 @@
-# Lumi Jelly for PuruPuru PNGTuber
+# Lumi Jelly PNGTuber
 
-[English](./README.md) | [日本語](./README.ja.md)
+[English](./README.md) | [日本語](./README.ja.md) | [Head-motion edition](https://github.com/Sunwood-ai-labs/lumi-jelly-head-motion-pngtuber)
 
-An original celestial jellyfish PNGTuber character with two production-ready
-variants: the original avatar and a head-only five-direction motion avatar.
-Image Gen sources are preserved and both variants are verified in PuruPuru
-PNGTuber.
+Lumi Jelly is an original celestial-jellyfish PNGTuber avatar rendered as a
+front-facing upper body with an ornate navy-and-gold outfit. This repository is
+the general-purpose six-expression edition. The separate head-motion edition
+contains the head-only five-direction runtime and its PuruPuru integration patch.
 
 <p align="center">
-  <img src="./avatar/concept.png" width="520" alt="Lumi Jelly, an aqua-and-lavender celestial jellyfish PNGTuber avatar">
+  <img src="./avatar/concept.png" width="520" alt="Lumi Jelly upper-body celestial-jellyfish PNGTuber avatar">
 </p>
 
 <p align="center">
-  <img alt="Six expression PNGs" src="https://img.shields.io/badge/Expressions-6-6c63ff">
-  <img alt="Five generated directions" src="https://img.shields.io/badge/Head%20Motion-5%20directions-5865f2">
-  <img alt="Thirty head motion states" src="https://img.shields.io/badge/Head%20States-30-8b5cf6">
+  <img alt="Upper-body edition" src="https://img.shields.io/badge/Edition-upper%20body-5865f2">
+  <img alt="Six expressions" src="https://img.shields.io/badge/Expressions-6-6c63ff">
   <img alt="1024 by 1024 pixels" src="https://img.shields.io/badge/Canvas-1024%C3%971024-20a4c8">
   <img alt="Image Gen source preserved" src="https://img.shields.io/badge/Image%20Gen-source%20preserved-8b5cf6">
-  <img alt="PuruPuru ready" src="https://img.shields.io/badge/PuruPuru-ready-f06b47">
 </p>
-
-## Head-only directional motion variant
-
-`Lumi Jelly Head Motion` contains no neck, shoulders, torso, clothing, or bust.
-Its left, right, up, and down masters were each generated directly from the
-approved frontal Image Gen master—never mirrored, warped, or derived from a
-different direction. Every direction has six eye/mouth states, for 30 generated
-runtime frames total.
-
-![All 30 head-only direction and expression states](./docs/screenshots/head-motion/all-30-runtime-states.png)
-
-The app renders one dominant generated direction at a time. A 140 ms continuous
-direction-weight settle prevents input chatter without crossfading whole faces,
-so rapid movement does not create double eyes or double mouths.
-
-![Rapid left, right, up, down, and front movement in the real app](./docs/screenshots/head-motion/rapid-direction-cycle.gif)
-
-Verified real-app states are also preserved individually under
-[`docs/screenshots/head-motion/`](./docs/screenshots/head-motion/), including
-left/right/up/down, speaking, and blinking screenshots. The original-size
-`6144 × 5290` QA sheet keeps every runtime state at its native `1024 × 1024`
-resolution.
 
 ## Preview
 
-![Lumi Jelly shown with closed, half-open, and fully open mouth states](./avatar/expression-preview.png)
+![Lumi Jelly's six eye and mouth states](./avatar/expression-preview.png)
 
-Closed, half-open, and fully open mouth states are supplied for both open and
-closed eyes. All runtime PNG files share the same transparent `1024 × 1024`
-canvas and alignment.
+The package combines open/closed eyes with closed, half-open, and fully open
+mouths. All six visible runtime frames are aligned transparent `1024 × 1024`
+PNGs. `back-hair.png` and `front-hair.png` are transparent compatibility layers;
+the complete generated hair and costume remain in every expression frame.
 
-## Verified in the app
+## Use the avatar
 
-![Lumi Jelly shown in three verified PuruPuru PNGTuber states](./docs/screenshots/lumi-jelly-screenshot-proof-v2.png)
+Map the files in [`avatar/`](./avatar/) to the equivalent PNGTuber states:
 
-The final build was checked in the real app UI:
+| State | File |
+| --- | --- |
+| Eyes open, mouth closed | `eyes-open-mouth-closed.png` |
+| Eyes open, mouth half open | `eyes-open-mouth-half.png` |
+| Eyes open, mouth open | `eyes-open-mouth-open.png` |
+| Eyes closed, mouth closed | `eyes-closed-mouth-closed.png` |
+| Eyes closed, mouth half open | `eyes-closed-mouth-half.png` |
+| Eyes closed, mouth open | `eyes-closed-mouth-open.png` |
 
-- character profile: `Lumi Jelly / 保存済み`;
-- closed mouth: `口: とじ`;
-- half-open mouth: `口: はんびらき`;
-- fully open mouth: `口: ぜんかい`;
-- 52 upstream integration tests passed; and
-- an independent full-resolution visual audit passed.
-
-## Use with PuruPuru PNGTuber
-
-1. Clone [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber).
-2. Run the installer with the absolute path to that checkout:
-
-   ```bash
-   ./tools/install_into_purupuru.sh /absolute/path/to/PuruPuruPNGTuber
-   ```
-
-3. Start PuruPuru PNGTuber with `./run_local_server.sh` and select
-   **Lumi Jelly** or **Lumi Jelly Head Motion** from the character switcher.
-
-The patch adds automatic profile registration and the corresponding static
-tests. It was produced against upstream tag `v0.1.0` (`9dc1e73`). If upstream
-changes make the patch fail, use the files in `avatar/` as the authoritative
-character package and port the small registration block manually.
+[`avatar/default-settings.json`](./avatar/default-settings.json) records the
+settings used for PuruPuru PNGTuber. The verified PuruPuru composite is kept at
+[`docs/screenshots/lumi-jelly-screenshot-proof-v2.png`](./docs/screenshots/lumi-jelly-screenshot-proof-v2.png).
 
 ## Repository contents
 
 ```text
-avatar/                 Runtime PNGs, settings, concept, expression preview
-head-motion/avatar/     Head-only runtime PNGs plus preserved Image Gen sources
+avatar/                 Six runtime PNGs, settings, concept, expression preview
 provenance/source/      Untouched Image Gen outputs on chroma background
 provenance/keyed/       Background-removed intermediate PNGs
 provenance/PROMPTS.md   Master and identity-preserving edit prompts
-tools/                  Normalization and installation utilities
-integration/            Context-checked PuruPuru patch (`.patch.gz`) and target scripts
-docs/screenshots/       Final full-app verification evidence
+tools/                  Deterministic normalization utilities
+docs/screenshots/       Real-app verification evidence
 SHA256SUMS              Integrity manifest for published files
 ```
 
-The rejected low-quality SVG experiment and obsolete Canvas-warp diagnostic
-screenshots are intentionally excluded from this public repository.
+Head-only direction assets, motion code, and rejected legacy experiments are
+intentionally excluded from this repository.
 
 ## Rebuild runtime PNGs
-
-The keyed intermediates can be normalized back into the aligned runtime files:
 
 ```bash
 python3 -m pip install Pillow
 ./tools/render_lumi_jelly_assets.sh
-./tools/render_lumi_head_motion_assets.sh
 ```
 
-This step performs resizing, transparent padding, and compatibility-layer
-generation only. It does not redraw or replace the Image Gen character.
+The rebuild only removes the chroma background, normalizes size and padding,
+and writes compatibility layers. It does not redraw or replace the Image Gen
+character.
+
+## Head-motion edition
+
+For a head-only avatar with front, left, right, up, and down artwork, 30 runtime
+states, and a directional PuruPuru patch, use
+[`lumi-jelly-head-motion-pngtuber`](https://github.com/Sunwood-ai-labs/lumi-jelly-head-motion-pngtuber).
 
 ## Provenance
 
 - Created on 2026-07-15 with OpenAI's built-in Image Gen tool.
-- One approved master was edited with identity-preserving prompts to create six
-  eye/mouth states.
-- Untouched outputs and prompt records are retained under `provenance/`.
-- Head-motion sources, keyed intermediates, direction lineage, and prompt
-  records are retained under `head-motion/avatar/imagegen-v1/`.
-- Runtime processing is limited to chroma-key removal, padding, and resizing.
+- One approved master was edited with identity-preserving prompts for six states.
+- Untouched outputs, keyed intermediates, and prompts are retained in-repository.
 - No named artist, existing character, or third-party character asset was used
   as a prompt reference.
 
 ## License and credits
 
-- Lumi Jelly artwork and image sources: see [LICENSE-ASSETS.md](./LICENSE-ASSETS.md).
-- Code under `tools/` and `integration/`: Apache License 2.0, see
-  [LICENSE-CODE](./LICENSE-CODE). Upstream-derived patch context retains its
-  upstream attribution.
-- Target app: [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber)
-  by masa. The app is not bundled here.
+- Artwork and Image Gen sources: [LICENSE-ASSETS.md](./LICENSE-ASSETS.md)
+- Code under `tools/`: [LICENSE-CODE](./LICENSE-CODE)
+- Verified target app: [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber) by masa
 
 OpenAI's terms govern the relationship between the user and OpenAI for the
 generated output; they do not guarantee copyright availability or third-party

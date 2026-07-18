@@ -2,9 +2,8 @@
 
 Copyright © 2026 Sunwood AI Labs. All rights reserved.
 
-The files under `avatar/`, `provenance/`, and `head-motion/avatar/` are Lumi
-Jelly visual artwork and related source material. They are not licensed under
-Apache-2.0.
+The files under `avatar/` and `provenance/` are Lumi Jelly visual artwork and
+related Image Gen source material. They are not licensed under Apache-2.0.
 
 The verification image under `docs/screenshots/` combines Lumi Jelly with the
 PuruPuru PNGTuber user interface. Rights in Lumi Jelly remain with Sunwood AI

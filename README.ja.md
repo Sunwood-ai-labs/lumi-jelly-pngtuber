@@ -1,95 +1,91 @@
-# PuruPuru PNGTuber向け Lumi Jelly
+# Lumi Jelly PNGTuber
 
-[English](./README.md) | [日本語](./README.ja.md)
+[English](./README.md) | [日本語](./README.ja.md) | [頭部5方向版](https://github.com/Sunwood-ai-labs/lumi-jelly-head-motion-pngtuber)
 
-天体クラゲをモチーフにしたオリジナルPNGTuberキャラクターです。通常版と、
-頭部のみで正面・左・右・上・下へ動く5方向版の2種類を収録しています。
-Image Genの生成元と加工履歴を保存し、PuruPuru PNGTuber実機で確認済みです。
+天体クラゲをモチーフにした、衣装付き上半身の正面向きPNGTuber素材です。
+このリポジトリには汎用的な6表情版だけを収録しています。頭部のみの5方向版と
+方向制御パッチは、別リポジトリへ分離しています。
 
 <p align="center">
-  <img src="./avatar/concept.png" width="520" alt="天体クラゲPNGTuberキャラクター Lumi Jelly">
+  <img src="./avatar/concept.png" width="520" alt="衣装付き上半身の天体クラゲPNGTuber Lumi Jelly">
 </p>
 
-## 頭部のみの5方向モーション版
+<p align="center">
+  <img alt="衣装付き上半身版" src="https://img.shields.io/badge/%E7%89%88-%E8%A1%A3%E8%A3%85%E4%BB%98%E3%81%8D%E4%B8%8A%E5%8D%8A%E8%BA%AB-5865f2">
+  <img alt="6表情" src="https://img.shields.io/badge/%E8%A1%A8%E6%83%85-6-6c63ff">
+  <img alt="1024 x 1024" src="https://img.shields.io/badge/Canvas-1024%C3%971024-20a4c8">
+  <img alt="Image Gen生成元保存" src="https://img.shields.io/badge/Image%20Gen-%E7%94%9F%E6%88%90%E5%85%83%E4%BF%9D%E5%AD%98-8b5cf6">
+</p>
 
-`Lumi Jelly Head Motion` には首、肩、胴体、衣装、胸部がありません。
-左・右・上・下の各マスターは、承認済みの正面マスターを直接参照して
-Image Genで個別生成しました。反転、Canvasワープ、別方向からの派生は
-使用していません。
+## プレビュー
 
-正面を含む5方向それぞれに「開眼／閉眼 × 口閉じ／半開き／全開き」の
-6状態があり、合計30枚の実行用PNGを収録しています。
+![Lumi Jellyの目と口を組み合わせた6表情](./avatar/expression-preview.png)
 
-![全30方向・表情状態](./docs/screenshots/head-motion/all-30-runtime-states.png)
+開眼／閉眼と、口閉じ／半開き／全開きを組み合わせた6枚です。すべて同じ
+透過 `1024 × 1024` キャンバスに整列しています。`back-hair.png` と
+`front-hair.png` は互換用の透明レイヤーで、髪と衣装の完成画は各表情PNGに
+含まれています。
 
-アプリは常に優勢な方向のImage Gen画像1枚だけを描画します。140msの
-方向ウェイト追従で入力のばたつきを抑えつつ、全面クロスフェードを行わない
-ため、高速操作でも二重目や二重口が発生しません。
+## 素材の使い方
 
-![実アプリでの左・右・上・下・正面の高速往復](./docs/screenshots/head-motion/rapid-direction-cycle.gif)
+[`avatar/`](./avatar/) の画像を、使用するPNGTuberアプリの各状態へ割り当てます。
 
-## 通常版プレビュー
+| 状態 | ファイル |
+| --- | --- |
+| 開眼・口閉じ | `eyes-open-mouth-closed.png` |
+| 開眼・口半開き | `eyes-open-mouth-half.png` |
+| 開眼・口全開き | `eyes-open-mouth-open.png` |
+| 閉眼・口閉じ | `eyes-closed-mouth-closed.png` |
+| 閉眼・口半開き | `eyes-closed-mouth-half.png` |
+| 閉眼・口全開き | `eyes-closed-mouth-open.png` |
 
-![Lumi Jellyの6表情](./avatar/expression-preview.png)
-
-通常版も、開眼／閉眼と口3段階を組み合わせた6枚の透過PNGを収録しています。
-すべて `1024 × 1024` で整列済みです。
-
-## PuruPuru PNGTuberへの導入
-
-1. [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber) をクローンします。
-2. このリポジトリで、対象クローンの絶対パスを指定して実行します。
-
-   ```bash
-   ./tools/install_into_purupuru.sh /absolute/path/to/PuruPuruPNGTuber
-   ```
-
-3. 対象側で `./run_local_server.sh` を起動し、キャラ切替から
-   **Lumi Jelly** または **Lumi Jelly Head Motion** を選びます。
-
-統合パッチは上流タグ `v0.1.0`（`9dc1e73`）向けです。新規クローンへの
-導入後、静的テスト52件と `node --check app.js` が通ることを確認しています。
+PuruPuru PNGTuberで使用した設定は
+[`avatar/default-settings.json`](./avatar/default-settings.json)、実アプリの確認画像は
+[`docs/screenshots/lumi-jelly-screenshot-proof-v2.png`](./docs/screenshots/lumi-jelly-screenshot-proof-v2.png)
+に保存しています。
 
 ## リポジトリ構成
 
 ```text
-avatar/                 通常版の実行用PNGと設定
-provenance/             通常版の未加工Image Gen出力と中間PNG
-head-motion/avatar/     頭部5方向版、30状態、生成元、中間PNG、設定
-docs/screenshots/       実アプリ確認画像、原寸QA、方向往復GIF
-tools/                  再生成・導入ツール
-integration/            PuruPuru統合パッチと対象側スクリプト
+avatar/                 6枚の実行用PNG、設定、コンセプト、表情一覧
+provenance/source/      未加工のImage Gen出力
+provenance/keyed/       背景除去済み中間PNG
+provenance/PROMPTS.md   マスターと同一性維持編集のプロンプト
+tools/                  決定論的な正規化ツール
+docs/screenshots/       実アプリでの確認証拠
 SHA256SUMS              公開ファイルの整合性マニフェスト
 ```
 
-旧Canvasワープの診断画像と、採用しなかった低品質SVG試作は公開物から
-除外しています。
+頭部方向素材、方向制御コード、不採用の旧試作はこのリポジトリに含めません。
 
 ## 実行用PNGの再構築
 
 ```bash
 python3 -m pip install Pillow
 ./tools/render_lumi_jelly_assets.sh
-./tools/render_lumi_head_motion_assets.sh
 ```
 
-再構築で行うのは、クロマ除去済み中間PNGのリサイズ、透過パディング、
-互換レイヤー生成、QA一覧生成です。生成キャラクターをコード描画で
-置き換える処理はありません。
+再構築で行うのはクロマ背景の除去、サイズと余白の正規化、互換レイヤーの生成だけです。
+Image Genキャラクターの描き直しやコード描画への置換は行いません。
+
+## 頭部5方向版
+
+頭部のみ、正面・左・右・上・下、合計30状態、PuruPuru方向制御パッチ付きの版は
+[`lumi-jelly-head-motion-pngtuber`](https://github.com/Sunwood-ai-labs/lumi-jelly-head-motion-pngtuber)
+にあります。
 
 ## 来歴
 
-- OpenAI組み込みImage Genを使用して2026-07-15〜16に制作。
-- 頭部5方向版の各方向マスターは、正面マスターを直接参照して生成。
-- 未加工出力、透過化中間、プロンプト記録、方向の参照関係をリポジトリ内に保存。
-- ローカル処理はクロマ除去、パディング、リサイズ、パッケージ化のみ。
-- 特定の既存キャラクター、作家名、第三者キャラクター素材は参照していません。
+- 2026-07-15にOpenAI組み込みImage Genで制作。
+- 承認済みマスターを同一性維持編集し、6表情を生成。
+- 未加工出力、中間PNG、プロンプトをリポジトリ内に保存。
+- 特定の作家、既存キャラクター、第三者キャラクター素材は参照していません。
 
-## ライセンス
+## ライセンスとクレジット
 
 - キャラクター画像と生成元: [LICENSE-ASSETS.md](./LICENSE-ASSETS.md)
-- `tools/` と `integration/` のコード: [LICENSE-CODE](./LICENSE-CODE)
-- 対象アプリ: masa氏の [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber)
+- `tools/` のコード: [LICENSE-CODE](./LICENSE-CODE)
+- 確認対象アプリ: masa氏の [PuruPuru PNGTuber](https://github.com/rotejin/PuruPuruPNGTuber)
 
 生成物に関するユーザーとOpenAIの関係にはOpenAIの規約が適用されます。
 各法域での著作権成立や第三者権利非侵害を保証するものではありません。
